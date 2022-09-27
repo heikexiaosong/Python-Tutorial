@@ -63,6 +63,41 @@ def format_json_string():
     print(type(json_formatted_str), json_formatted_str)
 
 
+def write_to_csv():
+    """
+    json数据写入csv文件
+    """
+
+    datas = [
+        {
+            "code": "430100",
+            "name": "长沙市",
+            "province": "湖南省"
+        },
+        {
+            "code": "430200",
+            "name": "株洲市",
+            "province": "湖南省"
+        }
+    ]
+    print(type(datas), datas)
+
+    import csv
+
+    data_file = open('xzqh.csv', 'w')
+
+    csv_writer = csv.writer(data_file)
+    # 写入csv标题行
+    header = datas[0].keys()
+    csv_writer.writerow(header)
+
+    for data in datas:
+        # 写入csv数据行
+        csv_writer.writerow(data.values())
+
+    data_file.close()
+
+
 if __name__ == '__main__':
     print("JSON with Python!")
 
@@ -73,3 +108,5 @@ if __name__ == '__main__':
     writing_json_string("xzqh.json")
 
     format_json_string()
+
+    write_to_csv()
