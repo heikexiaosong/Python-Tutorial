@@ -32,9 +32,43 @@ def read_json_file(filename):
         print(key, val, sep=': ')
 
 
+def writing_json_string(out_file_name):
+    """
+    写入JSON文件
+    """
+
+    dictionary = {
+        "code": "430100",
+        "name": "长沙市",
+        "province": "湖南省"
+    }
+
+    with open(out_file_name, "w") as outfile:
+        # ensure_ascii=False: 不使用ascii编码
+        json.dump(dictionary, outfile, ensure_ascii=False)
+
+def format_json_string():
+    """
+    格式化 JSON
+    """
+
+    dictionary = {
+        "code": "430100",
+        "name": "长沙市",
+        "province": "湖南省"
+    }
+    print(type(dictionary), dictionary)
+    json_formatted_str = json.dumps(dictionary, ensure_ascii=False)
+    print(type(json_formatted_str), json_formatted_str)
+
+
 if __name__ == '__main__':
     print("JSON with Python!")
 
     convert_json_string()
 
     read_json_file("employee.json")
+
+    writing_json_string("xzqh.json")
+
+    format_json_string()
