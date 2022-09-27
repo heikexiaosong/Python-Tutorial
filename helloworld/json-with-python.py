@@ -53,11 +53,18 @@ def format_json_string():
     格式化 JSON
     """
 
-    dictionary = {
-        "code": "430100",
-        "name": "长沙市",
-        "province": "湖南省"
-    }
+    dictionary = [
+        {
+            "code": "430100",
+            "name": "长沙市",
+            "province": "湖南省"
+        },
+        {
+            "code": "430200",
+            "name": "株洲市",
+            "province": "湖南省"
+        }
+    ]
     print(type(dictionary), dictionary)
     json_formatted_str = json.dumps(dictionary, ensure_ascii=False)
     print(type(json_formatted_str), json_formatted_str)
@@ -80,7 +87,6 @@ def write_to_csv():
             "province": "湖南省"
         }
     ]
-    print(type(datas), datas)
 
     import csv
 
