@@ -47,6 +47,7 @@ def writing_json_string(out_file_name):
         # ensure_ascii=False: 不使用ascii编码
         json.dump(dictionary, outfile, ensure_ascii=False)
 
+
 def format_json_string():
     """
     格式化 JSON
