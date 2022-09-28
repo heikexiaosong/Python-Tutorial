@@ -33,8 +33,7 @@ def ret_handle(ret: dict):
 
 if __name__ == '__main__':
 
-    app_id = '8545f14352eb41df9d112cefc3958086'
-    app_key = KeyManager.get_secret_key(app_id)
+    app_id, app_key = KeyManager.get_secret_key('8545f14352eb41df9d112cefc3958086')
 
     pai_client = PaiClient(app_id, app_key)
 

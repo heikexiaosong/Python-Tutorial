@@ -203,3 +203,29 @@ class PaiClient():
             'fplx': fplx
         }
         return self._request(kwargs.pop('path'), data=self.build_query_params(record, kwargs))
+
+    @pai_endpoint('/api/ocr/mixtureTicket')
+    def ocr(self, data_base64: str, **kwargs) -> object:
+        """
+        OCR 识别
+
+        ocr(self, data_base64: str, **kwargs) -> object
+        Returns a specified item and its attributes.
+
+        Examples:
+            literal blocks::
+
+                res = PaiClient().ocr('91440300708437873H20220701209226')
+
+        Args:
+            data_base64: str
+            **kwargs:
+
+        Returns:
+            GetCatalogItemResponse:
+        """
+
+        record = {
+            'imgBase64': data_base64
+        }
+        return self._request(kwargs.pop('path'), data=self.build_query_params(record, kwargs))

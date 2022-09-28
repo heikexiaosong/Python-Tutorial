@@ -18,7 +18,8 @@ def get_secret_key(key):
     key_dict = json.load(f)
     f.close()
 
-    return key_dict[key] if key in key_dict else ''
+    secret = '' if key not in key_dict else key_dict[key]
+    return key, secret
 
 
 def sync_app_key():
@@ -27,9 +28,7 @@ def sync_app_key():
 
     :return:
     """
-
     import pymysql
-
     conn = pymysql.connect(
         host='ztefsscinvoiceo.mysql.rds.aliyuncs.com',
         user='zfs_readonly',
@@ -38,7 +37,6 @@ def sync_app_key():
     )
 
     cur = conn.cursor()
-
     # Select query
     cur.execute("select APP_ID, ENCRYPT_KEY from company")
     records = cur.fetchall()
@@ -48,9 +46,6 @@ def sync_app_key():
     for record in records:
         print(record)
         key_dict[record[0]] = record[1]
-
-    print("records: ", len(records))
-    print("map: ", len(key_dict.keys()))
 
     with open(JSON_FILE_NAME, "w") as outfile:
         # ensure_ascii=False: 不使用ascii编码
