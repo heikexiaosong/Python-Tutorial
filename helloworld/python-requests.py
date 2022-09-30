@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
-import requests
+
+from requests import request
 
 
 def write_to_csv(datas, out_file_name):
@@ -41,7 +42,7 @@ if __name__ == '__main__':
         "batchNo": "",
         "fphm": ""
     }
-    response = requests.get('http://114.55.6.229:9080/api/pai/ledgers', params=params)
+    response = request('GET', 'http://114.55.6.229:9080/api/pai/ledgers', params=params)
     if response.status_code != 200:
         print('[{}]{}'.format(response.status_code, response.reason))
         exit(0)

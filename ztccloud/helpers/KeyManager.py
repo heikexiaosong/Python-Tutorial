@@ -50,9 +50,3 @@ def sync_app_key():
     with open(JSON_FILE_NAME, "w") as outfile:
         # ensure_ascii=False: 不使用ascii编码
         json.dump(key_dict, outfile, ensure_ascii=False, indent=4)
-
-
-# Driver Code
-if __name__ == "__main__":
-    secret_key = get_secret_key('f542407f7c554f43adaafcb35f377e4f')
-    print('secret_key: ', secret_key)

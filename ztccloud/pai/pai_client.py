@@ -57,6 +57,7 @@ class PaiClient():
 
         self.method = params.pop('method', data.pop('method', 'POST'))
         self.endpoint = 'http://einvoice.ztccloud.com.cn'
+        # self.endpoint = 'http://192.168.0.215:8081'
         # res = request(self.method,
         #               self.endpoint + self._check_version(path),
         #               params=params,
@@ -227,5 +228,59 @@ class PaiClient():
 
         record = {
             'imgBase64': data_base64
+        }
+        return self._request(kwargs.pop('path'), data=self.build_query_params(record, kwargs))
+
+    @pai_endpoint('/api/incomingCertification/queryStatisticsDeduct')
+    def query_statistics_deduct(self, batch_no: str, **kwargs) -> object:
+        """
+        申请统计结果-中软
+
+        query_statistics_deduct(self, batch_no: str, **kwargs) -> object
+        Returns a specified item and its attributes.
+
+        Examples:
+            literal blocks::
+
+                res = PaiClient().query_statistics_deduct('91150602MA13NM9N2X')
+
+        Args:
+            batch_no: str
+            **kwargs:
+
+        Returns:
+            GetCatalogItemResponse:
+        """
+
+        record = {
+            'batchNo': batch_no,
+            'nsrsbh': batch_no[:18]
+        }
+        return self._request(kwargs.pop('path'), data=self.build_query_params(record, kwargs))
+
+    @pai_endpoint('/api/incomingCertification/queryConfirmDeduct')
+    def query_confirm_deduct(self, batch_no: str, **kwargs) -> object:
+        """
+        确认签名结果-中软
+
+        query_confirm_deduct(self, batch_no: str, **kwargs) -> object
+        Returns a specified item and its attributes.
+
+        Examples:
+            literal blocks::
+
+                res = PaiClient().query_confirm_deduct('91150602MA13NM9N2X')
+
+        Args:
+            batch_no: str
+            **kwargs:
+
+        Returns:
+            GetCatalogItemResponse:
+        """
+
+        record = {
+            'batchNo': batch_no,
+            'nsrsbh': batch_no[:18]
         }
         return self._request(kwargs.pop('path'), data=self.build_query_params(record, kwargs))
